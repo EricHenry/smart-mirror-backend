@@ -1,11 +1,12 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, jsonify
+from config import DARK_SKY_KEY
 import requests
 
 app = Flask(__name__)
 
 @app.route('/weather')
 def index():
-    r = requests.get('https://api.darksky.net/forecast//41.6362,70.9342')
+    r = requests.get('https://api.darksky.net/forecast/'+ DARK_SKY_KEY + '/41.6362,70.9342')
     print(r.json());
     return jsonify(results=r.json())
 
